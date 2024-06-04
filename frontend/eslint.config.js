@@ -1,7 +1,4 @@
 import { Linter } from "eslint";
-import eslintRecommended from "eslint/conf/eslint-recommended";
-import reactRecommended from "eslint-plugin-react";
-import typescriptRecommended from "@typescript-eslint/eslint-plugin/dist/configs/recommended";
 
 /** @type {Linter.Config} */
 const config = {
@@ -23,7 +20,11 @@ const config = {
   rules: {
     "react/react-in-jsx-scope": "off",
   },
-  override: [eslintRecommended, reactRecommended, typescriptRecommended],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
 };
 
 export default config;
