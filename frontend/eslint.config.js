@@ -1,5 +1,5 @@
 import { Linter } from "eslint";
-import { pluginObject } from "react";
+import pluginObject from "react";
 
 /** @type {Linter.Config} */
 const config = {
