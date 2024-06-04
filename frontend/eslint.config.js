@@ -1,5 +1,4 @@
 import { Linter } from "eslint";
-import pluginObject from "react";
 
 /** @type {Linter.Config} */
 const config = {
@@ -12,9 +11,6 @@ const config = {
       SharedArrayBuffer: "readonly",
     },
   },
-  plugins: {
-    react: pluginObject,
-  },
   settings: {
     react: {
       version: "detect",
@@ -23,11 +19,7 @@ const config = {
   rules: {
     "react/react-in-jsx-scope": "off",
   },
-  extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-  ],
+  extends: ["eslint:recommended"],
 };
 
 export default config;
