@@ -22,4 +22,5 @@ jobs:
           npx prettier --check .
       - name: Run eslint
         run: |
+          cd frontend
           npx eslint .
