@@ -2,19 +2,20 @@ import { Linter } from "eslint";
 
 /** @type {Linter.Config} */
 const config = {
-  env: {
-    browser: true,
-    es2021: true,
+  files: ["**/*.js", "**/*.ts", "**/*.jsx", "**/*.tsx"],
+  languageOptions: {
+    ecmaVersion: 12,
+    sourceType: "module",
+    globals: {
+      Atomics: "readonly",
+      SharedArrayBuffer: "readonly",
+    },
   },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:typescript/recommended",
   ],
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
   plugins: ["react"],
   settings: {
     react: {
