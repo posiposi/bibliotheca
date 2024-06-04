@@ -1,11 +1,31 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
+import { Linter } from "eslint";
 
-export default [
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  pluginReactConfig,
-];
+/** @type {Linter.Config} */
+const config = {
+  env: {
+    browser: true,
+    es2021: true
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: "module"
+  },
+  plugins: [
+    "react"
+  ],
+  settings: {
+    react: {
+      version: "detect"  // 自動的にインストールされたReactのバージョンを使用
+    }
+  },
+  rules: {
+    "react/react-in-jsx-scope": "off"
+  }
+};
+
+export default config;
