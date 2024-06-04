@@ -11,7 +11,9 @@ const config = {
       SharedArrayBuffer: "readonly",
     },
   },
-  plugins: ["react"],
+  plugins: {
+    react: pluginObject,
+  },
   settings: {
     react: {
       version: "detect",
