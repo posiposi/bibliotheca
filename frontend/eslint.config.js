@@ -9,7 +9,6 @@ const config = {
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
   ],
   parserOptions: {
     ecmaVersion: 12,
@@ -20,7 +19,7 @@ const config = {
   ],
   settings: {
     react: {
-      version: "detect"  // 自動的にインストールされたReactのバージョンを使用
+      version: "detect"
     }
   },
   rules: {
