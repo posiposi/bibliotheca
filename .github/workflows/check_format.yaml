@@ -17,10 +17,6 @@ jobs:
         run: |
           cd frontend
           npm install
-      - name: Run prettier
+      - name: Run format and lint
         run: |
-          npx prettier --check .
-      - name: Run eslint
-        run: |
-          cd frontend
-          npx eslint .
+          npm run fix

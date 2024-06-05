@@ -8,12 +8,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "react-scripts start",
-    "lint:prettier": "prettier --check .",
-    "fix:prettier": "prettier --write .",
-    "lint:eslint": "eslint",
-    "fix:eslint": "npm run lint:eslint --fix",
-    "lint": "npm run lint:prettier && npm run lint:eslint",
-    "fix": "npm run fix:prettier && npm run fix:eslint"
+    "format": "prettier --check .",
+    "lint": "eslint --fix .",
+    "fix": "npm run format && npm run lint"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.8.2",
