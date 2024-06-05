@@ -19,4 +19,5 @@ jobs:
           npm install
       - name: Run format and lint
         run: |
+          cd frontend
           npm run fix
