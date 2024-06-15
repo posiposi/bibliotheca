@@ -1,0 +1,23 @@
+name: Check format.
+on: pull_request
+
+jobs:
+  run_prettier_and_eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22.x"
+
+      - name: Install Dependencies
+        run: |
+          cd frontend
+          npm install
+      - name: Run format and lint
+        run: |
+          cd frontend
+          npm run check
