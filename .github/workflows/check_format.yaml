@@ -2,7 +2,7 @@ name: Check format.
 on: pull_request
 
 jobs:
-  run_prettier:
+  run_prettier_and_eslint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
