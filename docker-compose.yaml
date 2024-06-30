@@ -1,12 +1,20 @@
 services:
   db:
     image: mysql:latest
-    env_file:
-      - .env
+    environment:
+      - DB_HOST=db
+      - DB_PORT=${MYSQL_PORT}
+      - DB_USER=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+      - DB_NAME=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - 3306:3306
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - app_network
 
   backend:
     build:
@@ -20,6 +28,8 @@ services:
       - db
     tty: true
     stdin_open: true
+    networks:
+      - app_network
 
   frontend:
     build:
@@ -36,3 +46,6 @@ services:
       - CHOKIDAR_USEPOLLING=true
 volumes:
   mysql_data:
+
+networks:
+  app_network:

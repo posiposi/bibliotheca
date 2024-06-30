@@ -2,7 +2,13 @@ FROM golang:1.22.0
 
 WORKDIR /go/src
 
-COPY go* ./
-RUN go mod download
+COPY go.mod go.sum ./
 
-COPY . .
+RUN go mod download
+RUN go get github.com/steebchen/prisma-client-go
+RUN go get -u github.com/go-sql-driver/mysql
+
+# Alias for the prisma client
+RUN echo 'alias prisma="go run github.com/steebchen/prisma-client-go"' >> ~/.bashrc
+
+COPY . /go/src
