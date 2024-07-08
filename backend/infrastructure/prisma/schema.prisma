@@ -1,0 +1,48 @@
+generator db {
+  provider = "go run github.com/steebchen/prisma-client-go"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://mikatan:password@db:3306/mikatan_knitting"
+}
+
+model User {
+  id         String   @id @default(uuid()) @db.Char(26)
+  name       String
+  email      String
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime?
+  items      Item[]
+
+  @@map("users")
+}
+
+model Item {
+  id           String    @id @default(uuid()) @db.Char(26)
+  item_name    String
+  status       String
+  user_id      String?
+  description  String?
+  purchased_at DateTime?
+  created_at   DateTime  @default(now())
+  updated_at   DateTime?
+  users        User?     @relation(fields: [user_id], references: [id])
+  price        Price?
+
+  @@map("items")
+}
+
+model Price {
+  id                String   @id @default(uuid()) @db.Char(26)
+  item_id           String   @db.Char(26) @unique
+  price_without_tax Int      @default(0)
+  price_with_tax    Int      @default(0)
+  tax_rate          Int      @default(10)
+  created_at        DateTime @default(now())
+  updated_at        DateTime?
+  item              Item     @relation(fields: [item_id], references: [id])
+
+  @@map("prices")
+}
