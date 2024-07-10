@@ -44,6 +44,24 @@ services:
     stdin_open: true
     environment:
       - CHOKIDAR_USEPOLLING=true
+
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=/openapi/openapi.yaml
+    volumes:
+      - ./openapi/src/openapi.yaml:/openapi/openapi.yaml
+    ports:
+      - "8010:8080"
+
+  prism:
+    image: stoplight/prism:4
+    command: 'mock -h 0.0.0.0 /openapi/openapi.yaml'
+    volumes:
+      - ./openapi/src/openapi.yaml:/openapi/openapi.yaml:ro
+    ports:
+      - "8011:4010"
+
 volumes:
   mysql_data:
 
