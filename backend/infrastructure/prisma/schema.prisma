@@ -22,7 +22,7 @@ model User {
 model Item {
   id           String    @id @default(uuid()) @db.Char(26)
   item_name    String
-  status       String
+  stock        Boolean   @default(true)
   user_id      String?
   description  String?
   purchased_at DateTime?
