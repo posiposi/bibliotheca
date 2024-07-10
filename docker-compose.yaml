@@ -48,11 +48,11 @@ services:
   swagger-ui:
     image: swaggerapi/swagger-ui
     environment:
-      - SWAGGER_JSON=/openapi/src/openapi.yaml
+      - SWAGGER_JSON=/openapi/openapi.yaml
     volumes:
       - ./openapi/src/openapi.yaml:/openapi/openapi.yaml
     ports:
-      - "8011:8080"
+      - "8010:8080"
 
   prism:
     image: stoplight/prism:4
@@ -60,7 +60,7 @@ services:
     volumes:
       - ./openapi/src/openapi.yaml:/openapi/openapi.yaml:ro
     ports:
-      - "4010:4010"
+      - "8011:4010"
 
 volumes:
   mysql_data:
