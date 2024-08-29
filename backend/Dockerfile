@@ -12,3 +12,4 @@ RUN go get -u github.com/go-sql-driver/mysql
 RUN echo 'alias prisma="go run github.com/steebchen/prisma-client-go"' >> ~/.bashrc
 
 COPY . /go/src
+COPY .env /go/src/.env
