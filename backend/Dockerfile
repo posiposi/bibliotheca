@@ -8,6 +8,7 @@ RUN go mod download
 RUN go get github.com/steebchen/prisma-client-go
 RUN go get -u github.com/go-sql-driver/mysql
 RUN go get -u gorm.io/gorm
+RUN go get -u github.com/gin-gonic/gin
 
 # Alias for the prisma client
 RUN echo 'alias prisma="go run github.com/steebchen/prisma-client-go"' >> ~/.bashrc
