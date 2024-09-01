@@ -1,0 +1,25 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    example: "randomId"
+  name:
+    type: string
+    example: "theUser"
+  email:
+    type: string
+    format: email
+    example: "john@email.com"
+  password:
+    type: string
+    format: password
+    example: "password"
+  created_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"
+  updated_at:
+    type: string
+    format: date-time
+    example: "2021-01-01T00:00:00Z"

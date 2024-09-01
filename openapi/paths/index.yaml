@@ -1,0 +1,53 @@
+users:
+  get:
+    tags:
+      - users
+    summary: ユーザーの一覧を取得する。ユーザーが存在しない場合は空の配列を返す。
+    responses:
+      "200":
+        description: 取得成功
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "../components/schemas/user.yaml"
+            examples:
+              populated:
+                summary: ユーザーが存在する
+                value:
+                  - id: "1"
+                    name: "John Doe"
+                    email: "john.doe@example.com"
+                    password: "password1"
+                    created_at: "2021-01-01T00:00:00Z"
+                    updated_at: "2021-01-01T00:00:00Z"
+                  - id: "2"
+                    name: "Jane Doe"
+                    email: "jane.doe@example.com"
+                    password: "password2"
+                    created_at: "2021-01-01T00:00:00Z"
+                    updated_at: "2021-01-01T00:00:00Z"
+              empty:
+                summary: ユーザーが存在しない
+                value: []
+      "400":
+        description: 不正なリクエスト
+users_id:
+  get:
+    tags:
+      - users
+    summary: ユーザーIDから特定ユーザーを取得する。ユーザー取得できなかった場合は404を返す。
+    parameters:
+      - $ref: "../components/parameters/users/user_id.yaml"
+    responses:
+      "200":
+        description: 取得成功
+        content:
+          application/json:
+            schema:
+              $ref: "../components/schemas/user.yaml"
+      "400":
+        description: 不正なリクエスト"
+      "404":
+        description: ユーザーが存在しない

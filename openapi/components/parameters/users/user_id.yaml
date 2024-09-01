@@ -1,0 +1,8 @@
+name: user_id
+in: path
+description: 取得するユーザーのID
+required: true
+example: "userId12345"
+schema:
+  type: string
+  format: uuid
