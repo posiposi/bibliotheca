@@ -3,7 +3,13 @@ info:
   title: bibliotheca API
   description: bibliotheca関連API
   version: 1.0.0
-
+servers:
+  - url: "https://local.bibliotheca.com/api/v1"
+    description: ローカル環境
+  - url: "https://test.bibliotheca.com/api/v1"
+    description: テスト環境
+  - url: "https://www.bibliotheca.com/api/v1"
+    description: 本番環境
 paths:
   /users:
     $ref: "./paths/index.yaml#/users"
