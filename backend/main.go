@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/posiposi/project/backend/internal/api"
+	"github.com/posiposi/project/backend/api"
 )
 
 func main() {
