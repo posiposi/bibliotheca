@@ -34,6 +34,6 @@ func NewEmail(v string) (*Email, error) {
 	return &Email{value: v}, nil
 }
 
-func (e *Email) EmailValue() string {
+func (e *Email) Value() string {
 	return e.value
 }

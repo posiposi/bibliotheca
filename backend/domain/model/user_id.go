@@ -30,6 +30,6 @@ func NewUserId(id string) (*UserId, error) {
 	return userId, nil
 }
 
-func (u *UserId) UserIdValue() string {
+func (u *UserId) Value() string {
 	return u.value
 }

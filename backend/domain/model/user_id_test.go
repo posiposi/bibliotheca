@@ -39,5 +39,5 @@ func TestNewUserId(t *testing.T) {
 func TestUserIdValue(t *testing.T) {
 	id, err := NewUserId("testuser_id")
 	assert.NoError(t, err)
-	assert.Equal(t, "testuser_id", id.UserIdValue())
+	assert.Equal(t, "testuser_id", id.Value())
 }

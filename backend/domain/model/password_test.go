@@ -35,3 +35,9 @@ func TestNewPassword(t *testing.T) {
 		})
 	}
 }
+
+func TestPasswordValue(t *testing.T) {
+	password, err := NewPassword("testpassword")
+	assert.NoError(t, err)
+	assert.Equal(t, "testpassword", password.Value())
+}

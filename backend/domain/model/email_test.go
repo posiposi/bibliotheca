@@ -44,5 +44,5 @@ func TestNewEmail(t *testing.T) {
 func TestEmailValue(t *testing.T) {
 	email, err := NewEmail("test@example.com")
 	assert.NoError(t, err)
-	assert.Equal(t, "test@example.com", email.EmailValue())
+	assert.Equal(t, "test@example.com", email.Value())
 }

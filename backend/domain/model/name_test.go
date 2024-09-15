@@ -38,5 +38,5 @@ func TestNewName(t *testing.T) {
 func TestNameValue(t *testing.T) {
 	name, err := NewName("testuser")
 	assert.NoError(t, err)
-	assert.Equal(t, "testuser", name.NameValue())
+	assert.Equal(t, "testuser", name.Value())
 }

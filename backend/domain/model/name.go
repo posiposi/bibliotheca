@@ -34,6 +34,6 @@ func NewName(v string) (*Name, error) {
 	return &Name{value: v}, nil
 }
 
-func (n *Name) NameValue() string {
+func (n *Name) Value() string {
 	return n.value
 }

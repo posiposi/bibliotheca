@@ -25,3 +25,7 @@ func NewPassword(v string) (*Password, error) {
 
 	return &Password{value: v}, nil
 }
+
+func (p *Password) Value() string {
+	return p.value
+}
