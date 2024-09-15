@@ -1,9 +1,9 @@
-package database
+package seeds
 
 import (
 	"log"
 
-	"github.com/posiposi/project/backend/internal/orm/model"
+	"github.com/posiposi/project/backend/infrastructure/database/mysql/gorm/model"
 	"gorm.io/gorm"
 )
 

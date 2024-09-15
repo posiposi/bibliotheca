@@ -1,11 +1,10 @@
-package main
+package seeds
 
 import (
 	"log"
 	"os"
 
 	"github.com/joho/godotenv"
-	"github.com/posiposi/project/backend/infrastructure/database"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -26,7 +25,7 @@ func main() {
 	}
 	defer sqlDB.Close()
 
-	dbManager := database.NewDBManager(db)
+	dbManager := NewDBManager(db)
 	if err := dbManager.Seed(); err != nil {
 		log.Fatalf("Seeder error: %v", err)
 	}

@@ -1,4 +1,4 @@
-package database
+package seeds
 
 import (
 	"log"
@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/posiposi/project/backend/internal/orm/model"
+	"github.com/posiposi/project/backend/infrastructure/database/mysql/gorm/model"
 )
 
 func (m *DBManager) seedUsers() error {
