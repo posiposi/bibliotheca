@@ -18,6 +18,8 @@ users:
                     $ref: "../components/schemas/user.yaml"
       "400":
         description: 不正なリクエスト
+      "500":
+        description: 内部サーバーエラー
 users_id:
   get:
     tags:
@@ -33,6 +35,8 @@ users_id:
             schema:
               $ref: "../components/schemas/user.yaml"
       "400":
-        description: 不正なリクエスト"
+        description: 不正なリクエスト
       "404":
         description: ユーザーが存在しない
+      "500":
+        description: 内部サーバーエラー
