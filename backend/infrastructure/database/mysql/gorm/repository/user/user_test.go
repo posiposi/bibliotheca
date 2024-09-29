@@ -32,42 +32,58 @@ func SetupMockDB(t *testing.T) (*gorm.DB, sqlmock.Sqlmock, *sql.DB) {
 }
 
 func TestGetList(t *testing.T) {
-	gdb, mock, db := SetupMockDB(t)
-	defer db.Close()
+	t.Run("users exist in the database", func(t *testing.T) {
+		gdb, mock, db := SetupMockDB(t)
+		defer db.Close()
 
-	r := NewUserRepository(gdb)
+		r, _ := NewUserRepository(gdb)
 
-	user := model.User{
-		Id:        "user_id",
-		Name:      "user_name",
-		Email:     "user_email",
-		Password:  "user_password",
-		CreatedAt: time.Now(),
-	}
-	user_2 := model.User{
-		Id:        "user_id_2",
-		Name:      "user_name_2",
-		Email:     "user_email_2",
-		Password:  "user_password_2",
-		CreatedAt: time.Now(),
-	}
+		user := model.User{
+			Id:        "user_id",
+			Name:      "user_name",
+			Email:     "user_email",
+			Password:  "user_password",
+			CreatedAt: time.Now(),
+		}
+		user_2 := model.User{
+			Id:        "user_id_2",
+			Name:      "user_name_2",
+			Email:     "user_email_2",
+			Password:  "user_password_2",
+			CreatedAt: time.Now(),
+		}
 
-	rows := sqlmock.NewRows([]string{"id", "name", "email", "password", "created_at"}).
-		AddRow(user.Id, user.Name, user.Email, user.Password, user.CreatedAt).
-		AddRow(user_2.Id, user_2.Name, user_2.Email, user_2.Password, user_2.CreatedAt)
-	mock.ExpectQuery("^SELECT \\* FROM `users`$").WillReturnRows(rows)
+		rows := sqlmock.NewRows([]string{"id", "name", "email", "password", "created_at"}).
+			AddRow(user.Id, user.Name, user.Email, user.Password, user.CreatedAt).
+			AddRow(user_2.Id, user_2.Name, user_2.Email, user_2.Password, user_2.CreatedAt)
+		mock.ExpectQuery("^SELECT \\* FROM `users`$").WillReturnRows(rows)
 
-	users, err := r.GetList()
-	assert.NoError(t, err)
-	assert.Len(t, users, 2)
-	user_1_id := users[0].Id()
-	user_1_name := users[0].Name()
-	user_2_name := users[1].Name()
-	assert.Equal(t, user.Id, user_1_id.Value())
-	assert.Equal(t, user.Name, user_1_name.Value())
-	assert.Equal(t, user_2.Name, user_2_name.Value())
+		users, err := r.GetList()
+		assert.NoError(t, err)
+		assert.Len(t, users, 2)
+		user_1_id := users[0].Id()
+		user_1_name := users[0].Name()
+		user_2_name := users[1].Name()
+		assert.Equal(t, user.Id, user_1_id.Value())
+		assert.Equal(t, user.Name, user_1_name.Value())
+		assert.Equal(t, user_2.Name, user_2_name.Value())
 
-	if err := mock.ExpectationsWereMet(); err != nil {
-		t.Errorf("there were unfulfilled expectations: %s", err)
-	}
+		if err := mock.ExpectationsWereMet(); err != nil {
+			t.Errorf("there were unfulfilled expectations: %s", err)
+		}
+	})
+
+	t.Run("users do not exist in the database", func(t *testing.T) {
+		gdb, mock, db := SetupMockDB(t)
+		defer db.Close()
+
+		r, _ := NewUserRepository(gdb)
+
+		rows := sqlmock.NewRows([]string{"id", "name", "email", "password", "created_at"})
+		mock.ExpectQuery("^SELECT \\* FROM `users`$").WillReturnRows(rows)
+
+		users, err := r.GetList()
+		assert.NoError(t, err)
+		assert.Len(t, users, 0)
+	})
 }

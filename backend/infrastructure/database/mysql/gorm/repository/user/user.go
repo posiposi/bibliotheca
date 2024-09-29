@@ -11,8 +11,8 @@ type UserRepository struct {
 	db *gorm.DB
 }
 
-func NewUserRepository(db *gorm.DB) *UserRepository {
-	return &UserRepository{db: db}
+func NewUserRepository(db *gorm.DB) (*UserRepository, error) {
+	return &UserRepository{db: db}, nil
 }
 
 func (r *UserRepository) GetList() (users []model.User, err error) {
@@ -25,5 +25,5 @@ func (r *UserRepository) GetList() (users []model.User, err error) {
 		user := model.NewUser(u.Id, u.Name, u.Email, u.Password)
 		users = append(users, *user)
 	}
-	return users, result.Error
+	return users, nil
 }
